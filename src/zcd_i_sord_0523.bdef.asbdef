@@ -1,0 +1,60 @@
+managed;
+//implementation in class zbp_cd_i_sord_0523 unique;
+//strict ( 1 );
+
+define behavior for ZCD_I_SORD_0523 alias header
+implementation in class ZCL_I_BP_SORD_0523 unique
+persistent table ztb_sord_0523
+with additional save
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+   field (readonly: update ) Idsales, Createon, Imagenurl;
+   field (mandatory : create) Createon,  Email, Firstname, Lastname, Deliverydate, Orderstatus;
+   mapping for ZTB_SORD_0523 {
+  Idsales = idsales;
+  Email = email;
+  Firstname = firstname;
+  Lastname = lastname;
+  Country = country;
+  Createon = createon;
+  Deliverydate = deliverydate;
+  Orderstatus = orderstatus;
+  Imagenurl = imagenurl;
+   }
+  create;
+  update;
+  delete;
+  action createTravelByTemplate result [1] $self;
+  validation validatestatus on save { field Orderstatus; }
+  association _item { create(features: instance); }
+
+}
+
+define behavior for ZCD_I_ITSORD_0523 alias item
+implementation in class ZCL_I_ITSORD_0523 unique
+persistent table ztb_itsord_0523
+lock dependent by _header
+authorization dependent by _header
+//etag master <field_name>
+{
+  field (readonly)  Idsales;
+  field (mandatory)  Iditsord;
+  update;
+  delete;
+  mapping for ZTB_ITSORD_0523 {
+  Iditsord = iditsord;
+  Idsales =  idsales;
+  Name = Name;
+  Description = Description;
+  Releasedate = Releasedate;
+  Discontinueddate= Discontinueddate;
+  Price = Price;
+  Height = Height;
+  Width = Width;
+  depth = Depth;
+  quantity = Quantity;
+  unitofmeasure = Unitofmeasure;}
+  association _header;
+}

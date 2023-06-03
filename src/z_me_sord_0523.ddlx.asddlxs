@@ -1,0 +1,68 @@
+@Metadata.layer: #CORE
+@Search.searchable:true
+@UI: {
+headerInfo: {
+    typeName: 'Order Sales',
+    typeNamePlural: 'Order Sales',
+    title: {
+        type: #STANDARD,
+        value: 'idsales'
+    }
+} }
+annotate view ZCD_C_SORD_0523 with
+{
+  @UI.facet: [ { id: 'idsales',
+   purpose: #STANDARD,
+   type: #IDENTIFICATION_REFERENCE,
+   label: 'Sales Order',
+   position: 10 },
+   { id: 'iditsord',
+   purpose: #STANDARD,
+   type: #LINEITEM_REFERENCE,
+   label: 'Detail',
+   position: 20,
+   targetElement: '_item'}]
+  @UI: {
+  lineItem: [ { position: 10, importance: #HIGH } ],
+  identification: [ { position: 10, label: 'ID Header
+[1,...,99999999]'} ] }
+  @Search.defaultSearchElement: true
+  Idsales;
+  @UI: {
+   lineItem: [ { position: 20, importance: #MEDIUM } ],
+   identification: [ { position: 20 } ] }
+  Email;
+  @UI: {
+  lineItem: [ { position: 21, importance: #MEDIUM } ],
+  identification: [ { position: 21,  label: 'First Namer' } ] }
+  Firstname;
+  @UI: {
+  lineItem: [ { position: 22, importance: #MEDIUM } ],
+  identification: [ { position: 22,  label: 'Last Namer' } ] }
+  Lastname;
+  @UI: {
+  lineItem: [ { position: 23, importance: #MEDIUM } ],
+  identification: [ { position: 23 } ] }
+  Country;
+  @UI: {
+  lineItem: [ { position: 24, importance: #MEDIUM } ],
+  identification: [ { position: 24 } ] }
+  Createon;
+  @UI: {
+  lineItem: [ { position: 25, importance: #MEDIUM } ],
+  identification: [ { position: 25 ,  label: 'Delivery Date'} ] }
+  Deliverydate;
+  @UI: {
+  lineItem: [ { position: 50, importance: #HIGH } ,
+  { type: #FOR_ACTION, dataAction: 'createTravelByTemplate', label: 'High sales order'
+  }], identification: [ { position: 45, label:
+  'Status [1(Initial)|2(Appr.)|3(Rej.)]' } ],
+  selectionField: [ { position: 40 } ] }
+  @EndUserText.label: 'Order Status'
+  Orderstatus;
+  @UI: {
+  lineItem: [ { position: 28, importance: #MEDIUM } ],
+  identification: [ { position: 28 ,  label: 'Imagen URL'} ] }
+  Imagenurl;
+
+}

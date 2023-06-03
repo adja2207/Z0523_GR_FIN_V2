@@ -1,0 +1,21 @@
+projection;
+//strict ( 1 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZCD_C_SORD_0523 alias header
+{
+  use create;
+  use update;
+  use delete;
+
+  use action createTravelByTemplate;
+
+  use association _item { create; }
+}
+
+define behavior for ZCD_C_ITSORD_0523 alias item
+{
+  use update;
+  use delete;
+
+  use association _header;
+}

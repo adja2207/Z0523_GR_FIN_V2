@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition Order - Header'
+define service ZSD_SORD_0523 {
+  expose ZCD_C_SORD_0523 as header;
+  expose ZCD_C_ITSORD_0523 as item;
+}
